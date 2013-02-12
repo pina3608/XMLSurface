@@ -1,0 +1,80 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 1. Introduction</title><meta content="DocBook XSL Stylesheets V1.44" name="generator"><link rel="home" href="index.html" title="Xerlin 1.1 User Guide"><link rel="up" href="index.html" title="Xerlin 1.1 User Guide"><link rel="previous" href="index.html" title="Xerlin 1.1 User Guide"><link rel="next" href="ch02.html" title="Chapter 2. Installation"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="chapter"><div class="titlepage"><div><h2 class="title"><a name="chapt-intro"></a>Chapter 1. Introduction</h2></div></div><p>Xerlin (pronounced zer-lin)
+      is an application for creating XML files. It runs on Java 2
+      virtual machines (JDK1.2.2 or JDK1.3). Xerlin simplifies how
+      you interact with an XML file by hiding the raw text form of
+      XML. It gives a user interface for adding, removing, and
+      rearranging XML elements. It also gives a nice interface for
+      editing the attributes of elements. Xerlin has been
+      developed for end users who may not be familiar with XML,
+      but it also provides a useful interface for people who know
+      XML really well.</p><p>An example of what the
+      Xerlin interface looks like is given in <a href="ch01.html#fig-intro-merlot-interface" title="Figure 1.1. Xerlin Interface">Figure 1.1</a>       
+      <div class="figure"><p><a name="fig-intro-merlot-interface"></a><b>Figure 1.1. Xerlin Interface</b></p><div class="mediaobject"><img src="images/fig-intro-merlot-interface.gif"><div class="caption"><p>A screenshot of the Xerlin XML interface</p></div></div></div>
+    </p><div class="section"><a name="div-intro-about-xml"></a><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="div-intro-about-xml"></a>About XML</h2></div></div><p>A full explanation
+	of XML is beyond the scope of this document, however we
+	will cover some of the basic XML concepts you will need
+	to know in order to use Xerlin prodcutively.
+	XML stands for eXtensible Markup
+	Language. It is similar to HTML,
+	HyperText Markup Language, except users can create their
+	own tags to fit their application needs.</p><div class="section"><a name="div-intro-elements"></a><div class="titlepage"><div><h3 class="title"><a name="div-intro-elements"></a>Elements, Attributes, and Content</h3></div></div><p>The basic
+	  construct in XML is called an
+	  <span class="emphasis"><i>element</i></span>. For people familiar
+	  with HTML, you might know this as a "tag".
+	  For example, HTML has an &lt;img&gt; element for
+	  putting graphics on a web page. Elements have a
+	  name, zero or more attributes, and possibly some
+	  content. In the raw text form of an XML document,
+	  elements start with a beginning tag of the element
+	  name enclosed within angle brackets (&lt; &gt;). XML
+	  elements must have a closing tag of angle brackets
+	  enclosing a slash and the element name. If the
+	  element has no content, this slash can be inserted
+	  at the end of the element's starting tag
+	  immediately preceeding the trailing angle bracket.
+	  An example of an element is given in 
+	  <a href="ch01.html#example-intro-xml-elements-raw" title="Example 1.1. ">Example 1.1</a>
+	</p><div class="example"><p><a name="example-intro-xml-elements-raw"></a><b>Example 1.1. </b></p><pre class="programlisting">
+   &lt;elementname attribute="value"&gt;content&lt;/elementname&gt;
+	  </pre></div><p>
+	  <span class="emphasis"><i>Attributes</i></span> are named values
+	  associated with an element. An example of an
+	  attribute is shown above in <a href="ch01.html#example-intro-xml-elements-raw" title="Example 1.1. ">Example 1.1</a> The
+	  <span class="emphasis"><i>content</i></span> of element can be other
+	  elements, text, or both. When an element has both
+	  text and other elements, it is known as "mixed
+	  content". Text content is also known as
+	  <span class="emphasis"><i>character data</i></span>,
+	  PCDATA, or
+	  CDATA.  </p><p>Xerlin
+	  supports most of these constructs of XML except
+	  CDATA. CDATA starts with <tt>&lt;![CDATA[</tt> and ends with
+	  <tt>]]&gt;</tt>. CDATA items are not
+	  currently supported as of Xerlin 1.2, but should be
+	  supported in a future release.</p></div><div class="section"><a name="div-intro-dtd"></a><div class="titlepage"><div><h3 class="title"><a name="div-intro-dtd"></a>DTDs and Schemas</h3></div></div><p>XML uses something called
+	  a Document Type Definition (DTD)
+	  to determine what elements are valid for an XML
+	  file, and what they can contain. A newer technology
+	  called XML Schema has been introduced to replace
+	  DTD's. However since this is such a new
+	  technology (it hasn't been finalized as of this
+	  writing), and the parser technologies Xerlin has
+	  been built on top of don't support it, Xerlin
+	  doesn't support Schemas in version 1.0.</p><p>To be able to add elements and create a valid
+	  XML document, Xerlin requires a DTD in order to
+	  work. There are many different DTDs available for
+	  different applications, and there are books and
+	  tutorials available on creating DTDs. Without a DTD,
+	  Xerlin cannot present it's menu of what
+	  elements can be added into the document. You can
+	  view and edit documents which don't have a DTD,
+	  but you will not be able to add anything new to
+	  them.</p><p>The DTD is specified in an XML
+	  document in a special element called the
+	  <span class="emphasis"><i>DOCTYPE</i></span>. This document type
+	  declaration includes the name of the root element,
+	  an optional PUBLIC identifier, and a manditory
+	  SYSTEM identifier. Xerlin handles the DOCTYPE
+	  declaration and the identifiers behind the scenes
+	  for you. A future version may give you more access
+	  to edit these items directly.</p></div></div></div></body></html>

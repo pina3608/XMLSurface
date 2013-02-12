@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="GalleryFrame">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="Type"/>
+      <xs:element name="GalleryItems">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="GalleryItem" maxOccurs="unbounded" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element type="xs:anyURI" name="Image"/>
+                  <xs:element type="xs:anyURI" name="Link"/>
+                  <xs:element type="xs:string" name="Title"/>
+                  <xs:element type="xs:boolean" name="NewWindow" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="DataFrame">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="Type"/>
+      <xs:element name="ImagePaths">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:string" name="Image" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="VideoFrame">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="Type"/>
+      <xs:element type="xs:boolean" name="NewWindow" minOccurs="0"/>
+      <xs:element type="xs:string" name="VideoPath"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="GameFrame">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="Type"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+
+</xs:schema>

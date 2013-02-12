@@ -1,0 +1,3 @@
+#!/bin/bash
+jar -cvf JavaHelp.jar .
+cp JavaHelp.jar /home/SmartEditor/exe/doc/

@@ -1,0 +1,13 @@
+org.merlotxml.awt
+org.merlotxml.merlot
+org.merlotxml.merlot.appicons
+org.merlotxml.merlot.editors
+org.merlotxml.merlot.icons
+org.merlotxml.merlot.plugin
+org.merlotxml.merlot.plugin.action
+org.merlotxml.merlot.plugin.dtd
+org.merlotxml.merlot.plugin.nodeAction
+org.merlotxml.merlot.plugins
+org.merlotxml.util
+org.merlotxml.util.xml
+org.merlotxml.util.xml.xerces
