@@ -1,4 +1,4 @@
-package org.merlotxml.merlot.plugins.exampleeditor;
+package org.merlotxml.merlot.plugins;
 
 import javax.swing.*;
 import java.awt.event.*;
