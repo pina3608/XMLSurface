@@ -687,7 +687,7 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
         JMenu f = new JMenu(MerlotResource.getString(UI, "file"));
 
         MerlotUtils.addActionToMenu(_actions._openFileAction, f);
-        MerlotUtils.addActionToMenu(_actions._openDavFileAction, f);
+ //       MerlotUtils.addActionToMenu(_actions._openDavFileAction, f);
         MerlotUtils.addActionToMenu(_actions._newFileAction, f);
         f.addSeparator();
 
@@ -697,7 +697,7 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
 
         MerlotUtils.addActionToMenu(_actions._saveFileAction, f);
         MerlotUtils.addActionToMenu(_actions._saveAsAction, f);
-        MerlotUtils.addActionToMenu(_actions._saveAsDavAction, f);
+//        MerlotUtils.addActionToMenu(_actions._saveAsDavAction, f);
         MerlotUtils.addActionToMenu(_actions._revertFileAction, f);
         MerlotUtils.addActionToMenu(_actions._closeFileAction, f);
         f.addSeparator();
@@ -931,7 +931,7 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
 
         MerlotUtils.addActionToToolBar(_actions._newFileAction, tb);
         MerlotUtils.addActionToToolBar(_actions._openFileAction, tb);
-        MerlotUtils.addActionToToolBar(_actions._openDavFileAction, tb);
+    //    MerlotUtils.addActionToToolBar(_actions._openDavFileAction, tb);
         MerlotUtils.addActionToToolBar(_actions._saveFileAction, tb);
 
         tb.addSeparator();
