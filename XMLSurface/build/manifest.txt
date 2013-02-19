@@ -3,7 +3,7 @@ Specification-Title: XMLSurfae XML Editor
 Specification-Version: 1.0
 Specification-Vendor: ChannelPoint, Inc.
 Implementation-Title: XMLSurfae XML Editor
-Implementation-Version: 20130212-154606-PST (santiago@MacBook-Air-de-Santiago.local [Mac OS X 10.8.2 x86_64] )
+Implementation-Version: 20130219-115548-PST (santiago@MacBook-Air-de-Santiago.local [Mac OS X 10.8.2 x86_64] )
 Implementation-Vendor: ChannelPoint, Inc.
 Main-Class: org.merlotxml.merlot.XMLEditor
 Class-Path: lib/jh.jar lib/thirdparty.jar lib/StrutLayout1.2.1.jar lib/dom3-xercesImpl-2.6.2.jar lib/dom3-xml-apis-2.6.2.jar lib/xalan-2.4.0.jar lib/commons.jar lib/webdavlib.jar lib/davfilechooser.jar lib/MRJToolkitStubs.jar

@@ -555,12 +555,12 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
         _menuBar.add(_nodeMenu);
         _menuBar.add(_windowMenu);
         if (_pluginMenu != null) {
-            _menuBar.add(_pluginMenu);
+  //          _menuBar.add(_pluginMenu);
         }
 
         // this doesn't seem to be supported in the JDK1.2.2 version of swing
         //	_menuBar.setHelpMenu(_helpMenu);
-        _menuBar.add(_helpMenu);
+   //     _menuBar.add(_helpMenu);
 
         this.setJMenuBar(_menuBar);
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GalleryFrame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/Users/santiago/XMLSurface/XMLSurface/default.xsd">
+    <Title>Test1</Title>
+    <Type>Test2</Type>
+    <GalleryItems>
+        <GalleryItem>
+            <Image/>
+            <Link/>
+            <Title/>
+            <NewWindow>true</NewWindow>
+        </GalleryItem>
+    </GalleryItems>
+</GalleryFrame>
