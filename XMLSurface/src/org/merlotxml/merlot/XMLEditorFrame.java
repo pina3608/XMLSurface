@@ -552,7 +552,7 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
 
         _menuBar.add(_fileMenu);
         _menuBar.add(_editMenu);
-        _menuBar.add(_nodeMenu);
+  //      _menuBar.add(_nodeMenu);
         _menuBar.add(_windowMenu);
         if (_pluginMenu != null) {
   //          _menuBar.add(_pluginMenu);
@@ -691,9 +691,9 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
         MerlotUtils.addActionToMenu(_actions._newFileAction, f);
         f.addSeparator();
 
-        MerlotUtils.addActionToMenu(_actions._openLibraryAction, f);
-        MerlotUtils.addActionToMenu(_actions._newLibraryAction, f);
-        f.addSeparator();
+  //      MerlotUtils.addActionToMenu(_actions._openLibraryAction, f);
+  //      MerlotUtils.addActionToMenu(_actions._newLibraryAction, f);
+   //     f.addSeparator();
 
         MerlotUtils.addActionToMenu(_actions._saveFileAction, f);
         MerlotUtils.addActionToMenu(_actions._saveAsAction, f);
@@ -839,7 +839,7 @@ public class XMLEditorFrame extends JFrame implements ClipboardOwner,
         MerlotUtils.addActionToMenu(_actions._windowTileHorizontalAction, w);
         MerlotUtils.addActionToMenu(_actions._windowTileVerticalAction, w);
         // For Window Menu
-        w.addSeparator();
+       // w.addSeparator();
         return w;
     }
 
