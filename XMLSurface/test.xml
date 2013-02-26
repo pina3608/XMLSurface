@@ -4,10 +4,10 @@
     <Type>Test2</Type>
     <GalleryItems>
         <GalleryItem>
-            <Image/>
-            <Link/>
-            <Title/>
-            <NewWindow>true</NewWindow>
+            <Image>/Users/santiago/contestapplet.conf</Image>
+            <Link>Link</Link>
+            <Title>asdad</Title>
+            <NewWindow>false</NewWindow>
         </GalleryItem>
     </GalleryItems>
 </GalleryFrame>

@@ -139,6 +139,17 @@ public class MerlotUtils implements MerlotConstants {
 		}
 	}
 
+
+    public static void fromAuxtoFile(File auxFile, File file) throws IOException{
+    	MerlotUtils.copyFile(auxFile, file);
+    
+    }
+
+    public static void fromFiletoAux(File file, File auxFile) throws IOException{
+    	MerlotUtils.copyFile(file, auxFile);
+    
+    }
+	
 	/**
 	 * Add an action to a menu at a specific position
 	 */

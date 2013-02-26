@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE library PUBLIC "-//MerlotXML.org//Library 1.0//EN"
-                         "file:/Users/santiago/XMLSurface/XMLSurface/build/classes/org/merlotxml/merlot/resource/library.dtd">
-<library bounds="128,12,1042,500" name="Santi">
-    <libshelf name="santi"/>
-    <libshelf name="testea"/>
-    <libshelf name="asfasf"/>
-    <libshelf name="asf"/>
-</library>

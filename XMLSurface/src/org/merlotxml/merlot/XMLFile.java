@@ -39,6 +39,10 @@
  *  For more information on ChannelPoint, Inc. please see http://www.channelpoint.com.
  *  For information on the Merlot project, please see
  *  http://www.merlotxml.org.
+ *  
+ *  
+ * @author Santiago Pina
+ *  
  */
 // Copyright 1999 ChannelPoint, Inc., All Rights Reserved.
 
@@ -90,6 +94,11 @@ public class XMLFile implements MerlotConstants {
     /**
      *  The file on the filesystem
      */
+    protected File _auxFile = null;
+
+    /**
+     *  The aux file on the filesystem
+     */
     protected File _file = null;
 
     /**
@@ -122,12 +131,21 @@ public class XMLFile implements MerlotConstants {
 
     public XMLFile(File f) throws MerlotException {
 
-        _file = f;
-
-        _propchange = new PropertyChangeSupport(this);
-
-        // now parse the file and get a Document
-        parseDocument();
+    	try{
+	        _file = f;
+	        _auxFile =  File.createTempFile(f.getName(), ".xml");
+	        _auxFile.deleteOnExit();
+	        MerlotUtils.fromFiletoAux(_file, _auxFile);
+	
+	        _propchange = new PropertyChangeSupport(this);
+	
+	        // now parse the file and get a Document
+	        parseDocument();
+		} catch (IOException ex) {
+	        throw new MerlotException(
+	            "IOException while saving file: " + ex.getMessage(),
+	            ex);   
+		}
 
     }
 
@@ -143,7 +161,7 @@ public class XMLFile implements MerlotConstants {
         _doc =
             XMLEditor.getSharedInstance().getDOMLiaison().createValidDocument();
     }
-
+    
     public void setXMLEditorDoc(XMLEditorDoc doc) {
         _xmlEditorDoc = doc;
     }
@@ -242,7 +260,7 @@ public class XMLFile implements MerlotConstants {
 
             if (domlia != null) {
                 _doc =
-                    domlia.parseValidXMLStream(fis, _file.getCanonicalPath());
+                    domlia.parseValidXMLStream(fis, _auxFile.getCanonicalPath());
             }
             if (_doc != null || _doc.getDocument() == null) {
                 _docType = _doc.getDocument().getDoctype();
@@ -253,10 +271,10 @@ public class XMLFile implements MerlotConstants {
 
         } catch (FileNotFoundException fnf) {
             MerlotDebug.exception(fnf);
-            throw new MerlotException("File not found: " + _file, fnf);
+            throw new MerlotException("File not found: " + _auxFile, fnf);
         } catch (IOException ioex) {
             MerlotDebug.exception(ioex);
-            throw new MerlotException("IOException: " + _file, ioex);
+            throw new MerlotException("IOException: " + _auxFile, ioex);
         } catch (DOMLiaisonImplException dle) {
             Exception blah = dle.getRealException();
             if (blah != null) {
@@ -273,7 +291,7 @@ public class XMLFile implements MerlotConstants {
     }
 
     protected InputStream getFileInputStream() throws FileNotFoundException {
-        return FileUtil.getInputStream(_file, this.getClass());
+        return FileUtil.getInputStream(_auxFile, this.getClass());
     }
 
     /**
@@ -466,30 +484,38 @@ public class XMLFile implements MerlotConstants {
 
             // keep a backup of the original file incase the saveAs fails
             File tmpFile = new File(f.getAbsolutePath() + ".tmpsave");
-
+            File auxFile = File.createTempFile(f.getName(), ".xml");
+	        auxFile.deleteOnExit();
+	        
             //			_file = f;
             OutputStream s = new FileOutputStream(tmpFile);
             printRawXML(s, true);
             s.close();
 
-            if (new File(_file.getAbsolutePath()).exists()) {
+            if (new File(_auxFile.getAbsolutePath()).exists()) {
                 // if it didn't work an exception will be thrown and we won't get here
                 // now replace the old file with the tmp one
-                File backup = new File(_file.getAbsolutePath() + ".$$$");
+                File backup = new File(_auxFile.getAbsolutePath() + ".$$$");
                 // if the backup already exists... remove it
                 if (backup.exists()) {
                     tf = backup.delete();
                     MerlotDebug.msg("Deleting " + backup + " returns " + tf);
                 }
                 if (!_new) {
-                    MerlotUtils.copyFile(_file, backup);
+                    MerlotUtils.copyFile(_auxFile, backup);
                 }
             }
 
-            MerlotUtils.copyFile(tmpFile, f);
+            MerlotUtils.copyFile(tmpFile, auxFile);
             tf = tmpFile.delete();
             MerlotDebug.msg("Deleting " + tmpFile + " returns " + tf);
-
+            
+            MerlotUtils.fromAuxtoFile(auxFile, f);
+            
+            tf = _auxFile.delete();
+            MerlotDebug.msg("Deleting " + _auxFile + " returns " + tf);
+            _auxFile = auxFile;
+            
             close(_file);
             _file = f;
 

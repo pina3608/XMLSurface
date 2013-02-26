@@ -133,6 +133,7 @@ import com.speedlegal.webdav.EditorFile;
  * which docuement is active.
  * 
  * @author Kelly A. Campbell
+ * @author Santiago Pina
  * @created 16 March 2003
  * @see XMLEditor
  * @see XMLEditorActions

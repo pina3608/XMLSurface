@@ -58,6 +58,10 @@
  *  ======================================================================
  *  For more information on SPEEDLEGAL visit www.speedlegal.com
  *  For information on the XERLIN project visit www.xerlin.org
+ *  
+ *  
+ * @author Santiago Pina
+ * 
  */
 package org.merlotxml.merlot;
 
@@ -112,21 +116,32 @@ public class XMLEditorFile extends XMLFile {
      *@exception  MerlotException  Description of the Exception
      */
     public XMLEditorFile(File f) throws MerlotException {
-        if (f instanceof EditorFile) {
-            _efile = (EditorFile) f;
-            ValidDOMLiaison vdl = XMLEditor.getSharedInstance().getDOMLiaison();
-            // Add dav entity resolver
-            vdl.addEntityResolver(new DavEntityResolver());
-        }
-        _file = f;
-        _propchange = new PropertyChangeSupport(this);
-
-        // now parse the file and get a Document
-        parseDocument();
+    	
+    	try{
+	        if (f instanceof EditorFile) {
+	            _efile = (EditorFile) f;
+	            ValidDOMLiaison vdl = XMLEditor.getSharedInstance().getDOMLiaison();
+	            // Add dav entity resolver
+	            vdl.addEntityResolver(new DavEntityResolver());
+	        }
+	        _file = f;
+	        _auxFile =  File.createTempFile(f.getName(), ".xml");
+	        _auxFile.deleteOnExit();
+	        MerlotUtils.fromFiletoAux(_file, _auxFile);
+	        
+	        _propchange = new PropertyChangeSupport(this);
+	
+	        // now parse the file and get a Document
+	        parseDocument();
+		} catch (IOException ex) {
+	        throw new MerlotException(
+	            "IOException while saving file: " + ex.getMessage(),
+	            ex);   
+		}
     }
 
     protected void parseDocument() throws MerlotException {
-        if (!(_file instanceof EditorFile)) {
+        if (!(_auxFile instanceof EditorFile)) {
             super.parseDocument();
             return;
         }
@@ -143,7 +158,7 @@ public class XMLEditorFile extends XMLFile {
     }
 
     protected InputStream getFileInputStream() throws FileNotFoundException {
-        if (_file instanceof EditorFile)
+        if (_auxFile instanceof EditorFile)
             return _efile.getContents();
         return super.getFileInputStream();
     }
