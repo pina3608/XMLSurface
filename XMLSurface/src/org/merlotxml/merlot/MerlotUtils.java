@@ -63,7 +63,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.MissingResourceException;
+import java.util.Scanner;
+import java.util.regex.*;
 
 import javax.swing.AbstractButton;
 import javax.swing.Action;
@@ -140,13 +143,38 @@ public class MerlotUtils implements MerlotConstants {
 	}
 
 
-    public static void fromAuxtoFile(File auxFile, File file) throws IOException{
-    	MerlotUtils.copyFile(auxFile, file);
+    public static void fromAuxtoFile(File from, File to) throws IOException{
+
+		FileInputStream is = new FileInputStream(from);
+		FileOutputStream os = new FileOutputStream(to);
+		
+		Scanner scan = new Scanner(is);
+		PrintStream ps = new PrintStream(os);
+		while(scan.hasNextLine()){
+			String text = scan.nextLine();
+			Matcher m1 = Pattern.compile("<(.*?)( xmlns:xsi)(.*?)>").matcher(text);
+
+		    if(m1.find()) {
+		    	String newLine ="<" + m1.group(1)
+		    			+" xmlns=\"http://schemas.datacontract.org/2004/07/Lavender.CoE.Sic.Data\""
+		    			+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" 
+		    			+ " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""
+		    			+ " xmlns:a=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">";
+		    	ps.println(newLine);
+		    }
+		    else{
+		    	ps.println(text);
+		    }
+		
+		}
+		is.close();
+		ps.close();
+
     
     }
 
-    public static void fromFiletoAux(File file, File auxFile) throws IOException{
-    	MerlotUtils.copyFile(file, auxFile);
+    public static void fromFiletoAux(File from, File to) throws IOException{
+    	MerlotUtils.copyFile(from, to);
     
     }
 	
