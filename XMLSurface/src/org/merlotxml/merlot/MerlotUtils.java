@@ -152,7 +152,7 @@ public class MerlotUtils implements MerlotConstants {
 		PrintStream ps = new PrintStream(os);
 		while(scan.hasNextLine()){
 			String text = scan.nextLine();
-			Matcher m1 = Pattern.compile("<(.*?)( xmlns:xsi)(.*?)>").matcher(text);
+			Matcher m1 = Pattern.compile("<(.*?)( xmlns:xsi)").matcher(text);
 
 		    if(m1.find()) {
 		    	String newLine ="<" + m1.group(1)
@@ -160,6 +160,12 @@ public class MerlotUtils implements MerlotConstants {
 		    			+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" 
 		    			+ " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""
 		    			+ " xmlns:a=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">";
+		    	do{
+					Matcher m2 = Pattern.compile("(.*?)>").matcher(text);
+					if(m2.find() || !scan.hasNext()) break;
+					text = scan.nextLine();
+		    	}while(true);
+		    	
 		    	ps.println(newLine);
 		    }
 		    else{
@@ -174,7 +180,38 @@ public class MerlotUtils implements MerlotConstants {
     }
 
     public static void fromFiletoAux(File from, File to) throws IOException{
-    	MerlotUtils.copyFile(from, to);
+
+    	String dtdfile = System.getProperty("user.dir") + System.getProperty("file.separator") + "default.xsd";
+		FileInputStream is = new FileInputStream(from);
+		FileOutputStream os = new FileOutputStream(to);
+		
+		Scanner scan = new Scanner(is);
+		PrintStream ps = new PrintStream(os);
+		while(scan.hasNextLine()){
+			String text = scan.nextLine();
+			Matcher m1 = Pattern.compile("<(.*?)( xmlns)").matcher(text);
+
+		    if(m1.find()) {
+		    	String newLine ="<" + m1.group(1)
+		    			+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+		    			+ " xsi:noNamespaceSchemaLocation=\""
+		    			+ dtdfile
+		    			+ "\">";
+		    	do{
+					Matcher m2 = Pattern.compile("(.*?)>").matcher(text);
+					if(m2.find() || !scan.hasNext()) break;
+					text = scan.nextLine();
+		    	}while(true);
+		    	
+		    	ps.println(newLine);
+		    }
+		    else{
+		    	ps.println(text);
+		    }
+		
+		}
+		is.close();
+		ps.close();
     
     }
 	
