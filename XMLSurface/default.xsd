@@ -10,7 +10,7 @@
       <xs:element name="GalleryItems">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="GalleryItem" maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="GalleryItem" maxOccurs="unbounded" minOccurs="1">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element type="xs:anyURI" name="Image"/>
@@ -35,7 +35,7 @@
       <xs:element name="ImagePaths">
         <xs:complexType>
           <xs:sequence>
-            <xs:element type="xs:anyURI" name="Image" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="xs:anyURI" name="Image" maxOccurs="unbounded" minOccurs="1"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
