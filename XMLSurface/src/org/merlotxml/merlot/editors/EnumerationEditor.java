@@ -87,6 +87,7 @@ import org.merlotxml.util.xml.GrammarSimpleType;
 
 /**
  * @author everth
+ * @author Santiago
  *
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.

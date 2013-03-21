@@ -152,6 +152,8 @@ public class MerlotUtils implements MerlotConstants {
 		PrintStream ps = new PrintStream(os);
 		while(scan.hasNextLine()){
 			String text = scan.nextLine();
+			text = text.replaceAll("<string>", "<a:string>");
+			text = text.replaceAll("</string>", "</a:string>");
 			Matcher m1 = Pattern.compile("<(.*?)( xmlns:xsi)").matcher(text);
 
 		    if(m1.find()) {
@@ -189,6 +191,8 @@ public class MerlotUtils implements MerlotConstants {
 		PrintStream ps = new PrintStream(os);
 		while(scan.hasNextLine()){
 			String text = scan.nextLine();
+			text = text.replaceAll("<a:string>", "<string>");
+			text = text.replaceAll("</a:string>", "</string>");
 			Matcher m1 = Pattern.compile("<(.*?)( xmlns)").matcher(text);
 
 		    if(m1.find()) {

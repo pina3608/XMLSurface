@@ -35,7 +35,7 @@
       <xs:element name="ImagePaths">
         <xs:complexType>
           <xs:sequence>
-            <xs:element type="xs:anyURI" name="Image" maxOccurs="unbounded" minOccurs="1"/>
+            <xs:element type="xs:anyURI" name="string" maxOccurs="unbounded" minOccurs="1"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -63,6 +63,21 @@
   </xs:complexType>
 </xs:element>
 
+<xs:element name="InteractiveTourFrame ">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="Type"/>
+      <xs:element name="ImagePaths">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:anyURI" name="string" maxOccurs="unbounded" minOccurs="1"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
 
 
 </xs:schema>
