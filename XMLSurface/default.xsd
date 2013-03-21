@@ -49,6 +49,7 @@
       <xs:element type="xs:string" name="Title"/>
       <xs:element type="xs:string" name="Type"/>
       <xs:element type="xs:boolean" name="NewWindow" minOccurs="0"/>
+      <xs:element type="xs:anyURI" name="Qr_overlay"/>
       <xs:element type="xs:anyURI" name="VideoPath"/>
     </xs:sequence>
   </xs:complexType>
