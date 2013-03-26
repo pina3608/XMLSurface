@@ -12,13 +12,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.merlotxml.merlot.MerlotDOMDocument;
+import org.merlotxml.merlot.MerlotDOMNode;
 import org.merlotxml.merlot.MerlotDebug;
 import org.merlotxml.util.xml.DTDConstants;
+import org.merlotxml.util.xml.GrammarComplexType;
 import org.merlotxml.util.xml.GrammarSimpleType;
 import org.merlotxml.util.xml.xerces.SchemaGrammarSimpleTypeImpl;
 
 /**
  * @author everth
+ * @author Santiago
  *
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
@@ -93,6 +97,9 @@ public class TextEditor extends SimpleTypeEditor {
                 _textField = new JTextField();
                 //_textField.addActionListener(new TextFieldKeyListener());
                 _component = _textField;
+                if(_complexTypeEditPanel._complexType.getName() == "Type"){
+                    _textField.setEditable(false);
+                }
             } else {
                 _textArea = new JTextArea();
                 _textArea.addKeyListener(new TextAreaKeyListener());
@@ -112,6 +119,10 @@ public class TextEditor extends SimpleTypeEditor {
                 //scrollPane.setMaximumSize(new Dimension(Short.MAX_VALUE, 40));
                 _component = scrollPane;
                 //_component = _textArea;
+
+                if(_complexTypeEditPanel._complexType.getName() == "Type"){
+                    _textArea.setEditable(false);
+                }
             }
         }
         return _component;
@@ -134,6 +145,13 @@ public class TextEditor extends SimpleTypeEditor {
         getComponent();
         if (value == null)
             value = _grammarSimpleType.getDefaultValue();
+        if(_complexTypeEditPanel._complexType.getName() == "Type"){
+        	MerlotDOMNode node = _complexTypeEditPanel._node;
+        	while(! (node.getParentNode() instanceof MerlotDOMDocument)){
+        		node = node.getParentNode();
+        	}
+        	value = node.getNodeName();
+        }
         if (_textField != null) {
             _textField.setText(value);
         }
